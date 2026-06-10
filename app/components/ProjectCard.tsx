@@ -1,5 +1,3 @@
-import { FiGithub, FiExternalLink } from "react-icons/fi";
-
 interface Project {
   title: string;
   description: string;
