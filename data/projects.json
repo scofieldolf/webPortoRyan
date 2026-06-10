@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Personal Portfolio Website",
+    "description": "Website portofolio responsif yang dibangun menggunakan Next.js, Tailwind CSS, dan TypeScript. Menampilkan desain modern dengan performa tinggi.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github_url": "https://github.com/scofieldolf/webPortoRyan",
+    "demo_url": "#"
+  },
+  {
+    "title": "E-Commerce Dashboard",
+    "description": "Dashboard admin untuk mengelola produk, transaksi, dan statistik penjualan dengan visualisasi grafik interaktif.",
+    "tech": ["React", "Chart.js", "Tailwind CSS"],
+    "github_url": "#",
+    "demo_url": "#"
+  },
+  {
+    "title": "Task Management App",
+    "description": "Aplikasi manajemen tugas harian dengan fitur drag-and-drop, kategori tugas, dan penyimpanan lokal (LocalStorage).",
+    "tech": ["React", "CSS Modules", "Context API"],
+    "github_url": "#",
+    "demo_url": "#"
+  }
+]
