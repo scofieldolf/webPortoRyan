@@ -1,3 +1,7 @@
+"use client";
+
+import TiltCard from "./TiltCard";
+
 interface Project {
   title: string;
   description: string;
@@ -17,7 +21,8 @@ export default function ProjectCard({
   const hasDemo = demo_url && demo_url !== "#";
 
   return (
-    <div className="group bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-850 dark:border-gray-800 p-6 flex flex-col justify-between hover:shadow-xl hover:border-accent/30 dark:hover:border-accent/30 transition-all duration-300">
+    <TiltCard className="h-full">
+      <div className="h-full group bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-850 dark:border-gray-800 p-6 flex flex-col justify-between transition-all duration-300">
       <div className="space-y-4">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors duration-200">
           {title}
@@ -96,5 +101,6 @@ export default function ProjectCard({
         )}
       </div>
     </div>
+    </TiltCard>
   );
 }

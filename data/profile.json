@@ -2,11 +2,12 @@
   "name": "Ryan",
   "role": "Frontend Developer",
   "location": "Indonesia",
-  "email": "ryan@example.com",
+  "email": "i.viryavan@binus.ac.id",
+  "phone": "https://wa.me/6287886790981",
   "github_url": "https://github.com/scofieldolf",
-  "linkedin_url": "https://linkedin.com/in/ryan",
+  "linkedin_url": "https://www.linkedin.com/in/i-made-viryavan-751766413/",
   "cv_url": "/cv-ryan.pdf",
-  "about_summary": "Saya adalah mahasiswa/profesional IT yang bersemangat mengembangkan website modern. Ketertarikan saya pada dunia pemrograman dimulai sejak menyadari bagaimana baris kode dapat menciptakan solusi yang mempermudah kehidupan orang banyak.",
-  "about_details": "Fokus utama saya saat ini adalah mendalami ekosistem React dan Next.js untuk membangun aplikasi web yang cepat, SEO-friendly, dan memiliki UX yang luar biasa. Saya sangat senang mempelajari teknologi baru dan berkolaborasi dalam tim.",
+  "about_summary": "I am an IT student/professional passionate about developing modern websites. My interest in programming began when I realized how lines of code can create solutions that make people's lives easier.",
+  "about_details": "My main focus currently is deepening my knowledge in the React and Next.js ecosystem to build fast, SEO-friendly web applications with outstanding UX. I love learning new technologies and collaborating in teams.",
   "skills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind CSS", "Git & GitHub", "Node.js"]
 }

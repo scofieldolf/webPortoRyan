@@ -26,10 +26,10 @@ export default function ContactForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Gagal mengirim pesan.");
+        throw new Error(data.error || "Failed to send message.");
       }
 
-      setStatusMsg({ type: "success", text: "Pesan Anda berhasil dikirim! Terima kasih 🙏" });
+      setStatusMsg({ type: "success", text: "Your message has been sent successfully! Thank you 🙏" });
       // Reset form
       setName("");
       setEmail("");
@@ -37,7 +37,7 @@ export default function ContactForm() {
     } catch (error: any) {
       setStatusMsg({
         type: "error",
-        text: error.message || "Terjadi kesalahan koneksi. Silakan coba lagi.",
+        text: error.message || "A connection error occurred. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -60,16 +60,16 @@ export default function ContactForm() {
 
       <div>
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          Nama
+          Name
         </label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Nama Anda"
+          placeholder="Your Name"
           required
           disabled={isLoading}
-          className="w-full bg-gray-55 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-50"
+          className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-50"
         />
       </div>
       <div>
@@ -80,24 +80,24 @@ export default function ContactForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email@anda.com"
+          placeholder="your.email@example.com"
           required
           disabled={isLoading}
-          className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-50"
+          className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-50"
         />
       </div>
       <div>
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          Pesan
+          Message
         </label>
         <textarea
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Tulis pesan Anda..."
+          placeholder="Write your message..."
           required
           disabled={isLoading}
-          className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent resize-none disabled:opacity-50"
+          className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent resize-none disabled:opacity-50"
         ></textarea>
       </div>
       <button
@@ -111,10 +111,10 @@ export default function ContactForm() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            Mengirim...
+            Sending...
           </>
         ) : (
-          "Kirim Pesan"
+          "Send Message"
         )}
       </button>
     </form>

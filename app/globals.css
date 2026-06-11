@@ -7,6 +7,83 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100;
+    @apply bg-[#05050a] text-gray-100 antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200;
+    font-family: 'Inter', system-ui, sans-serif;
   }
+}
+
+/* Cybernetic Grid & Grid Line Background */
+.cyber-grid {
+  background-image:
+    linear-gradient(to right, rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cyber-grid-dots {
+  background-image: radial-gradient(rgba(245, 158, 11, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Glowing Neon Elements */
+.neon-glow-amber {
+  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35), 0 0 15px -8px rgba(245, 158, 11, 0.2);
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.5), rgba(217, 119, 6, 0.2), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(10, 7, 2, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 158, 11, 0.05);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(20, 14, 3, 0.85);
+  border-color: rgba(245, 158, 11, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.15);
+}
+
+/* Custom Clip Paths for Tech Edges */
+.clip-cyber-corner {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.clip-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05050a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.5);
 }

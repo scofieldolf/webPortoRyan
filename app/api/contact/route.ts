@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: "Nama, email, dan pesan wajib diisi." },
+        { error: "Name, email, and message are required." },
         { status: 400 }
       );
     }
@@ -27,13 +27,13 @@ export async function POST(req: NextRequest) {
     fs.writeFileSync(filePath, JSON.stringify(contacts, null, 2), "utf-8");
 
     return NextResponse.json(
-      { message: "Pesan berhasil terkirim!" },
+      { message: "Message sent successfully!" },
       { status: 201 }
     );
   } catch (err) {
     console.error("Contact API error:", err);
     return NextResponse.json(
-      { error: "Terjadi kesalahan pada server." },
+      { error: "An internal server error occurred." },
       { status: 500 }
     );
   }
