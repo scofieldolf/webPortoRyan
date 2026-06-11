@@ -51,7 +51,7 @@ export default function Navbar({ name }: NavbarProps) {
             onClick={() => setIsOpen(false)}
             className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto border-b border-indigo-500/5 md:border-none group flex items-center gap-1"
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">//</span>
+            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>About</span>
           </a>
           <a
@@ -59,7 +59,7 @@ export default function Navbar({ name }: NavbarProps) {
             onClick={() => setIsOpen(false)}
             className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto border-b border-indigo-500/5 md:border-none group flex items-center gap-1"
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">//</span>
+            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>Projects</span>
           </a>
           <a
@@ -67,7 +67,7 @@ export default function Navbar({ name }: NavbarProps) {
             onClick={() => setIsOpen(false)}
             className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto border-b border-indigo-500/5 md:border-none group flex items-center gap-1"
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">//</span>
+            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>Skills</span>
           </a>
           <a
@@ -75,7 +75,7 @@ export default function Navbar({ name }: NavbarProps) {
             onClick={() => setIsOpen(false)}
             className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto md:border-none group flex items-center gap-1"
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">//</span>
+            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>Contact</span>
           </a>
 

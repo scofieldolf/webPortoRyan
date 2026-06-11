@@ -107,20 +107,20 @@ export default async function Home() {
                 href="#contact"
                 className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-amber-500 hover:bg-amber-600 text-black transition-all neon-glow-amber border border-amber-400/20 active:scale-95"
               >
-                // CONTACT_ME
+                {"// CONTACT_ME"}
               </a>
               <a
                 href="#projects"
                 className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 hover:border-amber-500/30 transition-all active:scale-95"
               >
-                // VIEW_PROJECTS
+                {"// VIEW_PROJECTS"}
               </a>
               <a
                 href={profile.cv_url}
                 download
                 className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-transparent border border-amber-500/20 text-amber-400 hover:bg-amber-500/10 hover:border-amber-400/40 transition-all"
               >
-                // DOWNLOAD_CV
+                {"// DOWNLOAD_CV"}
               </a>
             </div>
           </div>
@@ -163,15 +163,15 @@ export default async function Home() {
                 </h3>
                 <div className="space-y-4 font-mono">
                   <div className="border-b border-white/5 pb-2">
-                    <span className="text-amber-400/70 block text-xs">// LOCATION</span>
+                    <span className="text-amber-400/70 block text-xs">{"// LOCATION"}</span>
                     <p className="font-semibold text-gray-200">{profile.location}</p>
                   </div>
                   <div className="border-b border-white/5 pb-2">
-                    <span className="text-amber-400/70 block text-xs">// PRIMARY_ROLE</span>
+                    <span className="text-amber-400/70 block text-xs">{"// PRIMARY_ROLE"}</span>
                     <p className="font-semibold text-gray-200">{profile.role} / Student</p>
                   </div>
                   <div>
-                    <span className="text-amber-400/70 block text-xs">// SPECIALIZATION</span>
+                    <span className="text-amber-400/70 block text-xs">{"// SPECIALIZATION"}</span>
                     <p className="font-semibold text-gray-200">Interactive Web Interfaces</p>
                   </div>
                 </div>
@@ -203,7 +203,7 @@ export default async function Home() {
             </div>
           ) : (
             <div className="text-center py-16 glass-panel border border-amber-500/10 rounded-2xl text-gray-500 font-mono">
-              // NO_PROJECTS_REGISTERED
+              {"// NO_PROJECTS_REGISTERED"}
             </div>
           )}
         </section>
@@ -253,14 +253,14 @@ export default async function Home() {
 
               <div className="space-y-4 text-sm font-mono pt-6 md:pt-0">
                 <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                  <span className="text-amber-400 font-semibold">// EMAIL:</span>
+                  <span className="text-amber-400 font-semibold">{"// EMAIL:"}</span>
                   <a href={`mailto:${profile.email}`} className="hover:text-amber-300 text-gray-300 transition-colors">
                     {profile.email}
                   </a>
                 </div>
                 {profile.phone && (
                   <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                    <span className="text-amber-400 font-semibold">// WHATSAPP:</span>
+                    <span className="text-amber-400 font-semibold">{"// WHATSAPP:"}</span>
                     <a
                       href={profile.phone}
                       target="_blank"
@@ -272,7 +272,7 @@ export default async function Home() {
                   </div>
                 )}
                 <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                  <span className="text-amber-400 font-semibold">// GITHUB:</span>
+                  <span className="text-amber-400 font-semibold">{"// GITHUB:"}</span>
                   <a
                     href={profile.github_url}
                     target="_blank"
@@ -284,7 +284,7 @@ export default async function Home() {
                 </div>
                 {profile.linkedin_url && (
                   <div className="flex items-center gap-3">
-                    <span className="text-amber-400 font-semibold">// LINKEDIN:</span>
+                    <span className="text-amber-400 font-semibold">{"// LINKEDIN:"}</span>
                     <a
                       href={profile.linkedin_url}
                       target="_blank"
