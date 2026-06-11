@@ -26,7 +26,7 @@ interface Logos3Props {
 }
 
 const Logos3 = ({
-  heading = "Trusted by these companies",
+  heading,
   logos = [
     {
       id: "logo-1",
@@ -79,40 +79,44 @@ const Logos3 = ({
   ],
 }: Logos3Props) => {
   return (
-    <section className="py-24 border-y border-white/5 bg-black/20 backdrop-blur-sm overflow-hidden">
-      <div className="container mx-auto px-6 flex flex-col items-center text-center">
-        <h2 className="text-xl font-mono text-amber-500/80 tracking-widest uppercase mb-2">
-          {heading}
-        </h2>
-        <div className="w-12 h-0.5 bg-amber-500/30 mb-8" />
+    <div className={`w-full overflow-hidden ${heading ? "py-24 border-y border-white/5 bg-black/20" : "py-10"}`}>
+      {heading && (
+        <div className="container mx-auto px-6 flex flex-col items-center text-center">
+          <h2 className="text-xl font-mono text-amber-500/80 tracking-widest uppercase mb-2">
+            {heading}
+          </h2>
+          <div className="w-12 h-0.5 bg-amber-500/30 mb-8" />
+        </div>
+      )}
+      <div className="relative mx-auto flex items-center justify-center max-w-5xl px-6 [perspective:1000px]">
+        <div className="w-full [transform:rotateX(10deg)_rotateY(-5deg)] shadow-2xl relative z-10 py-6 px-4 bg-gradient-to-r from-amber-500/5 via-white/5 to-amber-500/5 rounded-2xl border border-white/5">
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[AutoScroll({ playOnInit: true, stopOnInteraction: false, speed: 1.2 })]}
+            className="w-full"
+          >
+            <CarouselContent className="ml-0 items-center">
+              {logos.map((logo) => (
+                <CarouselItem
+                  key={logo.id}
+                  className="flex basis-1/2 justify-center pl-0 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
+                >
+                  <div className="mx-6 flex shrink-0 items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110 drop-shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+                    <img
+                      src={logo.image}
+                      alt={logo.description}
+                      className={logo.className}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#050200] to-transparent pointer-events-none z-20"></div>
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#050200] to-transparent pointer-events-none z-20"></div>
       </div>
-      <div className="relative mx-auto flex items-center justify-center max-w-5xl px-6">
-        <Carousel
-          opts={{ loop: true }}
-          plugins={[AutoScroll({ playOnInit: true, stopOnInteraction: false, speed: 1 })]}
-          className="w-full"
-        >
-          <CarouselContent className="ml-0 items-center">
-            {logos.map((logo) => (
-              <CarouselItem
-                key={logo.id}
-                className="flex basis-1/2 justify-center pl-0 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
-              >
-                <div className="mx-6 flex shrink-0 items-center justify-center opacity-50 hover:opacity-100 transition-opacity duration-300">
-                  <img
-                    src={logo.image}
-                    alt={logo.description}
-                    className={logo.className}
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#050200] to-transparent pointer-events-none z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#050200] to-transparent pointer-events-none z-10"></div>
-      </div>
-    </section>
+    </div>
   );
 };
 

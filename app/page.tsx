@@ -66,6 +66,63 @@ export default async function Home() {
     projects = [];
   }
 
+  const techLogos = [
+    {
+      id: "react",
+      description: "React.js",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "nextjs",
+      description: "Next.js",
+      image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/nextjs-wordmark.svg",
+      className: "h-8 w-auto filter invert brightness-100 hover:scale-110 transition-transform",
+    },
+    {
+      id: "tailwind",
+      description: "Tailwind CSS",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      className: "h-6 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "typescript",
+      description: "TypeScript",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "javascript",
+      description: "JavaScript",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "nodejs",
+      description: "Node.js",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "html5",
+      description: "HTML5",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "css3",
+      description: "CSS3",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "git",
+      description: "Git",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+  ];
+
   return (
     <div className="relative min-h-screen bg-[#050200] text-gray-200 selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
       {/* Background Cyber Grid */}
@@ -140,9 +197,6 @@ export default async function Home() {
             </TiltCard>
           </div>
         </section>
-
-        {/* Logos Scroller */}
-        <Logos3 heading="Technologies I Work With" />
 
         {/* About Section */}
         <section id="about" className="scroll-mt-32 relative space-y-8">
@@ -223,6 +277,8 @@ export default async function Home() {
           <p className="text-gray-400 font-sans">
             A modular map of tools, platforms, and environments I use to build scalable web applications:
           </p>
+
+          <Logos3 logos={techLogos} />
 
           <div className="flex flex-wrap gap-4">
             {profile.skills.map((skill, idx) => (
