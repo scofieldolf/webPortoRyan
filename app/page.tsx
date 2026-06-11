@@ -5,6 +5,7 @@ import ProjectCard from "./components/ProjectCard";
 import Navbar from "./components/Navbar";
 import FloatingParticles from "./components/FloatingParticles";
 import TiltCard from "./components/TiltCard";
+import { Logos3 } from "@/components/ui/logos3";
 
 // Project data type
 interface Project {
@@ -139,6 +140,9 @@ export default async function Home() {
             </TiltCard>
           </div>
         </section>
+
+        {/* Logos Scroller */}
+        <Logos3 heading="Technologies I Work With" />
 
         {/* About Section */}
         <section id="about" className="scroll-mt-32 relative space-y-8">
