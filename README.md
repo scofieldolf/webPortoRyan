@@ -20,17 +20,6 @@ Buka http://localhost:3000 di browser.
 | `npm run start` | Jalankan hasil build production |
 | `npm run lint`  | Cek linting                     |
 
-## Vibecoding dengan Claude Code CLI
-
-File `CLAUDE.md` berisi konteks project (tech stack, konvensi, struktur).
-Claude Code CLI otomatis membacanya. Cukup jalankan:
-
-```bash
-claude
-```
-
-lalu mulai memberi instruksi, misalnya: _"buatkan section Projects dengan
-3 card proyek dan tombol dark mode toggle"_.
 
 ## Deploy
 
