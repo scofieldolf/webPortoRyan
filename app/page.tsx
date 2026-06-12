@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import FloatingParticles from "./components/FloatingParticles";
 import TiltCard from "./components/TiltCard";
 import { Logos3 } from "@/components/ui/logos3";
-import { HeroScrollDemo } from "@/components/ui/HeroScrollDemo";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 // Project data type
 interface Project {
@@ -200,43 +200,56 @@ export default async function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="scroll-mt-32 relative space-y-8">
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-amber-500/60 font-semibold">[SECT.01]</span>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight uppercase font-mono">About Me</h2>
-            <div className="flex-grow h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
-          </div>
+        <section id="about" className="scroll-mt-32 relative">
+          <ContainerScroll
+            titleComponent={
+              <div className="flex flex-col items-center justify-center text-center space-y-4 max-w-3xl mx-auto">
+                <span className="font-mono text-xs text-amber-500/80 tracking-widest uppercase">[SECT.01] ABOUT_ME</span>
+                <h2 className="text-4xl font-extrabold text-white sm:text-6xl tracking-tight leading-none uppercase font-mono">
+                  Get to know <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 drop-shadow-[0_2px_10px_rgba(245,158,11,0.2)]">
+                    My Journey
+                  </span>
+                </h2>
+                <div className="w-12 h-0.5 bg-amber-500/30 mt-4" />
+              </div>
+            }
+          >
+            <div className="h-full w-full overflow-y-auto p-6 md:p-10 bg-[#090503] text-gray-300 rounded-xl">
+              <div className="grid md:grid-cols-3 gap-8 text-base leading-relaxed">
+                <div className="md:col-span-2 space-y-6 text-justify md:text-left font-sans">
+                  <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-amber-400 first-letter:mr-2 leading-relaxed">
+                    {profile.about_summary}
+                  </p>
+                  <p className="leading-relaxed">
+                    {profile.about_details}
+                  </p>
+                </div>
 
-          <div className="grid md:grid-cols-3 gap-8 text-lg leading-relaxed text-gray-400">
-            <div className="md:col-span-2 space-y-6 text-justify md:text-left font-sans">
-              <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-amber-400 first-letter:mr-2">{profile.about_summary}</p>
-              <p>{profile.about_details}</p>
-            </div>
-
-            <TiltCard className="rounded-2xl h-full">
-              <div className="glass-panel border border-amber-500/10 p-6 rounded-2xl h-full space-y-6 text-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-16 h-16 bg-amber-500/5 rounded-bl-full pointer-events-none" />
-                <h3 className="font-mono font-bold text-white text-base flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                  Quick Info
-                </h3>
-                <div className="space-y-4 font-mono">
-                  <div className="border-b border-white/5 pb-2">
-                    <span className="text-amber-400/70 block text-xs">{"// LOCATION"}</span>
-                    <p className="font-semibold text-gray-200">{profile.location}</p>
-                  </div>
-                  <div className="border-b border-white/5 pb-2">
-                    <span className="text-amber-400/70 block text-xs">{"// PRIMARY_ROLE"}</span>
-                    <p className="font-semibold text-gray-200">{profile.role} / Student</p>
-                  </div>
-                  <div>
-                    <span className="text-amber-400/70 block text-xs">{"// SPECIALIZATION"}</span>
-                    <p className="font-semibold text-gray-200">Interactive Web Interfaces</p>
+                <div className="bg-[#110906] border border-amber-500/10 p-6 rounded-2xl space-y-6 text-sm relative overflow-hidden h-fit">
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-amber-500/5 rounded-bl-full pointer-events-none" />
+                  <h3 className="font-mono font-bold text-white text-base flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                    Quick Info
+                  </h3>
+                  <div className="space-y-4 font-mono text-left">
+                    <div className="border-b border-white/5 pb-2">
+                      <span className="text-amber-400/70 block text-xs">{"// LOCATION"}</span>
+                      <p className="font-semibold text-gray-200">{profile.location}</p>
+                    </div>
+                    <div className="border-b border-white/5 pb-2">
+                      <span className="text-amber-400/70 block text-xs">{"// PRIMARY_ROLE"}</span>
+                      <p className="font-semibold text-gray-200">{profile.role} / Student</p>
+                    </div>
+                    <div>
+                      <span className="text-amber-400/70 block text-xs">{"// SPECIALIZATION"}</span>
+                      <p className="font-semibold text-gray-200">Interactive Web Interfaces</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </TiltCard>
-          </div>
+            </div>
+          </ContainerScroll>
         </section>
 
         {/* Projects Section */}
@@ -266,9 +279,6 @@ export default async function Home() {
             </div>
           )}
         </section>
-
-        {/* 3D Container Scroll Showcase */}
-        <HeroScrollDemo />
 
         {/* Skills Section */}
         <section id="skills" className="scroll-mt-32 relative space-y-8">
