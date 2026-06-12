@@ -141,7 +141,7 @@ export default async function Home() {
       {/* Navbar */}
       <Navbar name={profile.name} />
 
-      <main className="relative mx-auto max-w-5xl px-6 py-16 md:py-24 space-y-36 z-10">
+      <main className="relative mx-auto max-w-5xl px-6 py-16 md:py-24 space-y-24 md:space-y-36 z-10">
         {/* Hero Section */}
         <section id="hero" className="relative flex flex-col items-center text-center md:items-start md:text-left justify-between md:flex-row gap-12 py-12">
           {/* Tech Grid Accents */}
@@ -314,7 +314,7 @@ export default async function Home() {
             <div className="flex-grow h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
           </div>
 
-          <div className="glass-panel border border-amber-500/10 p-8 md:p-10 rounded-3xl grid md:grid-cols-2 gap-12 shadow-2xl relative overflow-hidden">
+          <div className="glass-panel border border-amber-500/10 p-6 md:p-10 rounded-3xl grid md:grid-cols-2 gap-8 md:gap-12 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-amber-500/5 to-transparent pointer-events-none" />
 
             <div className="space-y-6 flex flex-col justify-between">
