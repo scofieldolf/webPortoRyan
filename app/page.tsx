@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import FloatingParticles from "./components/FloatingParticles";
 import TiltCard from "./components/TiltCard";
 import { Logos3 } from "@/components/ui/logos3";
+import { HeroScrollDemo } from "@/components/ui/HeroScrollDemo";
 
 // Project data type
 interface Project {
@@ -265,6 +266,9 @@ export default async function Home() {
             </div>
           )}
         </section>
+
+        {/* 3D Container Scroll Showcase */}
+        <HeroScrollDemo />
 
         {/* Skills Section */}
         <section id="skills" className="scroll-mt-32 relative space-y-8">
