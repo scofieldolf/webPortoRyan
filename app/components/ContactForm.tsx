@@ -59,7 +59,7 @@ export default function ContactForm() {
       )}
 
       <div>
-        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono">
           Name
         </label>
         <input
@@ -69,11 +69,11 @@ export default function ContactForm() {
           placeholder="Your Name"
           required
           disabled={isLoading}
-          className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-50"
+          className="w-full bg-input border border-border text-foreground rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 disabled:opacity-50"
         />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono">
           Email
         </label>
         <input
@@ -83,11 +83,11 @@ export default function ContactForm() {
           placeholder="your.email@example.com"
           required
           disabled={isLoading}
-          className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-50"
+          className="w-full bg-input border border-border text-foreground rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 disabled:opacity-50"
         />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono">
           Message
         </label>
         <textarea
@@ -97,17 +97,17 @@ export default function ContactForm() {
           placeholder="Write your message..."
           required
           disabled={isLoading}
-          className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent resize-none disabled:opacity-50"
+          className="w-full bg-input border border-border text-foreground rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 resize-none disabled:opacity-50"
         ></textarea>
       </div>
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full py-3 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors shadow-lg shadow-accent/20 disabled:opacity-50 flex items-center justify-center gap-2"
+        className="w-full py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl transition-all shadow-lg shadow-primary/10 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
       >
         {isLoading ? (
           <>
-            <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+            <svg className="animate-spin h-5 w-5 text-black" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>

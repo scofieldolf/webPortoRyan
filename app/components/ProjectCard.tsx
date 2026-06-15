@@ -22,19 +22,19 @@ export default function ProjectCard({
 
   return (
     <TiltCard className="h-full">
-      <div className="h-full group bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 flex flex-col justify-between transition-all duration-300">
+      <div className="h-full group bg-card rounded-2xl border border-border p-6 flex flex-col justify-between transition-all duration-300">
       <div className="space-y-4">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors duration-200">
+        <h3 className="text-xl font-bold text-card-foreground group-hover:text-primary transition-colors duration-200">
           {title}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           {description}
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
           {tech.map((t, i) => (
             <span
               key={i}
-              className="text-xs bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300 border border-gray-100 dark:border-gray-800/80 px-2.5 py-1 rounded-lg font-medium"
+              className="text-xs bg-muted text-muted-foreground border border-border px-2.5 py-1 rounded-lg font-medium"
             >
               {t}
             </span>
@@ -48,7 +48,7 @@ export default function ProjectCard({
             href={github_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-1.5"
+            className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"
           >
             {/* Simple Inline GitHub SVG */}
             <svg
@@ -66,7 +66,7 @@ export default function ProjectCard({
             GitHub
           </a>
         ) : (
-          <span className="text-gray-400 dark:text-gray-650 cursor-not-allowed flex items-center gap-1.5">
+          <span className="text-muted-foreground/50 cursor-not-allowed flex items-center gap-1.5">
             No Code
           </span>
         )}
@@ -76,7 +76,7 @@ export default function ProjectCard({
             href={demo_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent hover:underline flex items-center gap-1"
+            className="text-primary hover:opacity-80 hover:underline flex items-center gap-1"
           >
             Demo
             <svg
@@ -95,7 +95,7 @@ export default function ProjectCard({
             </svg>
           </a>
         ) : (
-          <span className="text-gray-450 dark:text-gray-600 flex items-center gap-1">
+          <span className="text-muted-foreground/60 flex items-center gap-1">
             Demo Offline
           </span>
         )}

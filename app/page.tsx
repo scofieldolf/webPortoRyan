@@ -125,73 +125,73 @@ export default async function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#050200] text-gray-200 selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-primary overflow-x-hidden transition-colors duration-300">
       {/* Background Cyber Grid */}
       <div className="absolute inset-0 cyber-grid pointer-events-none opacity-60 z-0" />
       <div className="absolute inset-0 cyber-grid-dots pointer-events-none opacity-45 z-0" />
 
       {/* Ambient Radial Glows */}
-      <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-amber-500/5 blur-[120px] pointer-events-none z-0" />
-      <div className="absolute top-[40%] right-[5%] w-[500px] h-[500px] rounded-full bg-amber-600/4 blur-[150px] pointer-events-none z-0" />
-      <div className="absolute bottom-[10%] left-[15%] w-[450px] h-[450px] rounded-full bg-amber-500/3 blur-[130px] pointer-events-none z-0" />
+      <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-[40%] right-[5%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none z-0" />
+      <div className="absolute bottom-[10%] left-[15%] w-[450px] h-[450px] rounded-full bg-primary/5 blur-[130px] pointer-events-none z-0" />
 
       {/* Background Floating Particles */}
       <FloatingParticles />
 
       {/* Navbar */}
-      <Navbar name={profile.name} />
+      <Navbar name={profile.name} cvUrl={profile.cv_url} />
 
       <main className="relative mx-auto max-w-5xl px-6 py-16 md:py-24 space-y-24 md:space-y-36 z-10">
         {/* Hero Section */}
         <section id="hero" className="relative flex flex-col items-center text-center md:items-start md:text-left justify-between md:flex-row gap-12 py-12">
           {/* Tech Grid Accents */}
-          <div className="absolute -left-4 top-0 w-8 h-8 border-t-2 border-l-2 border-amber-500/20 pointer-events-none" />
+          <div className="absolute -left-4 top-0 w-8 h-8 border-t-2 border-l-2 border-primary/20 pointer-events-none" />
 
           <div className="space-y-6 max-w-2xl">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full text-xs font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/20">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               STATUS: AVAILABLE_FOR_PROJECTS
             </div>
 
-            <h1 className="text-4xl font-extrabold sm:text-7xl tracking-tight leading-none text-white font-mono uppercase">
-              Hello, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 drop-shadow-[0_2px_10px_rgba(245,158,11,0.2)]">{profile.name}</span>
+            <h1 className="text-4xl font-semibold sm:text-7xl tracking-tight leading-none text-foreground font-serif">
+              Hello, I&apos;m <span className="text-primary font-serif italic">{profile.name}</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl font-sans">
-              A <span className="font-semibold text-white">{profile.role}</span> focused on engineering immersive, hyper-responsive, and user-centric digital environments.
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl font-sans">
+              A <span className="font-semibold text-foreground">{profile.role}</span> focused on engineering immersive, hyper-responsive, and user-centric digital environments.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
               <a
                 href="#contact"
-                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-amber-500 hover:bg-amber-600 text-black transition-all neon-glow-amber border border-amber-400/20 active:scale-95"
+                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground border border-primary/20 transition-all active:scale-95"
               >
-                {"// CONTACT_ME"}
+                CONTACT ME
               </a>
               <a
                 href="#projects"
-                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 hover:border-amber-500/30 transition-all active:scale-95"
+                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-muted/50 hover:bg-muted text-foreground border border-border hover:border-primary/30 transition-all active:scale-95"
               >
-                {"// VIEW_PROJECTS"}
+                VIEW PROJECTS
               </a>
               <a
                 href={profile.cv_url}
                 download
-                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-transparent border border-amber-500/20 text-amber-400 hover:bg-amber-500/10 hover:border-amber-400/40 transition-all"
+                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-transparent border border-primary/20 text-primary hover:bg-primary/10 hover:border-primary/40 transition-all"
               >
-                {"// DOWNLOAD_CV"}
+                DOWNLOAD CV
               </a>
             </div>
           </div>
 
           <div className="flex-shrink-0 relative">
-            <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-300 opacity-20 blur-xl animate-pulse" />
+            <div className="absolute -inset-2 rounded-full bg-primary opacity-15 blur-xl animate-pulse" />
             <TiltCard className="rounded-full">
-              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full glass-panel border border-amber-500/20 flex items-center justify-center text-white text-6xl md:text-8xl font-black tracking-tighter shadow-2xl">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full glass-panel border border-primary/20 flex items-center justify-center text-foreground text-6xl md:text-8xl font-black tracking-tighter shadow-2xl">
                 {/* Tech ticks circle background */}
-                <div className="absolute inset-2 border border-dashed border-amber-500/15 rounded-full animate-[spin_60s_linear_infinite]" />
-                <div className="absolute inset-4 border border-amber-500/5 rounded-full" />
-                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-tr from-white via-amber-200 to-amber-400 drop-shadow-[0_2px_8px_rgba(245,158,11,0.3)]">
+                <div className="absolute inset-2 border border-dashed border-primary/15 rounded-full animate-[spin_60s_linear_infinite]" />
+                <div className="absolute inset-4 border border-primary/5 rounded-full" />
+                <span className="relative z-10 text-primary">
                   {profile.name.charAt(0)}
                 </span>
               </div>
@@ -204,46 +204,46 @@ export default async function Home() {
           <ContainerScroll
             titleComponent={
               <div className="flex flex-col items-center justify-center text-center space-y-4 max-w-3xl mx-auto">
-                <span className="font-mono text-xs text-amber-500/80 tracking-widest uppercase">[SECT.01] ABOUT_ME</span>
-                <h2 className="text-4xl font-extrabold text-white sm:text-6xl tracking-tight leading-none uppercase font-mono">
+                <span className="font-mono text-xs text-primary/80 tracking-widest uppercase">[SECT.01] ABOUT_ME</span>
+                <h2 className="text-4xl font-semibold text-foreground sm:text-6xl tracking-tight leading-none font-serif">
                   Get to know <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 drop-shadow-[0_2px_10px_rgba(245,158,11,0.2)]">
+                  <span className="text-primary font-serif italic">
                     My Journey
                   </span>
                 </h2>
-                <div className="w-12 h-0.5 bg-amber-500/30 mt-4" />
+                <div className="w-12 h-0.5 bg-primary/30 mt-4" />
               </div>
             }
           >
-            <div className="h-full w-full overflow-y-auto p-6 md:p-10 bg-[#090503] text-gray-300 rounded-xl">
+            <div className="h-full w-full overflow-y-auto p-6 md:p-10 bg-card text-card-foreground rounded-xl">
               <div className="grid md:grid-cols-3 gap-8 text-base leading-relaxed">
                 <div className="md:col-span-2 space-y-6 text-justify md:text-left font-sans">
-                  <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-amber-400 first-letter:mr-2 leading-relaxed">
+                  <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-primary first-letter:mr-2 leading-relaxed">
                     {profile.about_summary}
                   </p>
-                  <p className="leading-relaxed">
+                  <p className="leading-relaxed text-muted-foreground">
                     {profile.about_details}
                   </p>
                 </div>
 
-                <div className="bg-[#110906] border border-amber-500/10 p-6 rounded-2xl space-y-6 text-sm relative overflow-hidden h-fit">
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-amber-500/5 rounded-bl-full pointer-events-none" />
-                  <h3 className="font-mono font-bold text-white text-base flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <div className="bg-muted/50 border border-border p-6 rounded-2xl space-y-6 text-sm relative overflow-hidden h-fit">
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full pointer-events-none" />
+                  <h3 className="font-mono font-bold text-foreground text-base flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     Quick Info
                   </h3>
                   <div className="space-y-4 font-mono text-left">
-                    <div className="border-b border-white/5 pb-2">
-                      <span className="text-amber-400/70 block text-xs">{"// LOCATION"}</span>
-                      <p className="font-semibold text-gray-200">{profile.location}</p>
+                    <div className="border-b border-border pb-2">
+                      <span className="text-primary/80 block text-xs">LOCATION</span>
+                      <p className="font-semibold text-foreground">{profile.location}</p>
                     </div>
-                    <div className="border-b border-white/5 pb-2">
-                      <span className="text-amber-400/70 block text-xs">{"// PRIMARY_ROLE"}</span>
-                      <p className="font-semibold text-gray-200">{profile.role} / Student</p>
+                    <div className="border-b border-border pb-2">
+                      <span className="text-primary/80 block text-xs">PRIMARY ROLE</span>
+                      <p className="font-semibold text-foreground">{profile.role} / Student</p>
                     </div>
                     <div>
-                      <span className="text-amber-400/70 block text-xs">{"// SPECIALIZATION"}</span>
-                      <p className="font-semibold text-gray-200">Interactive Web Interfaces</p>
+                      <span className="text-primary/80 block text-xs">SPECIALIZATION</span>
+                      <p className="font-semibold text-foreground">Interactive Web Interfaces</p>
                     </div>
                   </div>
                 </div>
@@ -255,9 +255,9 @@ export default async function Home() {
         {/* Projects Section */}
         <section id="projects" className="scroll-mt-32 relative space-y-8">
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-amber-500/60 font-semibold">[SECT.02]</span>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight uppercase font-mono">Featured Projects</h2>
-            <div className="flex-grow h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
+            <span className="font-mono text-xs text-primary/60 font-semibold">[SECT.02]</span>
+            <h2 className="text-3xl font-semibold text-foreground tracking-tight font-serif">Featured Projects</h2>
+            <div className="flex-grow h-px bg-gradient-to-r from-primary/20 to-transparent" />
           </div>
 
           {projects.length > 0 ? (
@@ -274,8 +274,8 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 glass-panel border border-amber-500/10 rounded-2xl text-gray-500 font-mono">
-              {"// NO_PROJECTS_REGISTERED"}
+            <div className="text-center py-16 glass-panel border border-border rounded-2xl text-muted-foreground font-mono">
+              NO PROJECTS REGISTERED
             </div>
           )}
         </section>
@@ -283,12 +283,12 @@ export default async function Home() {
         {/* Skills Section */}
         <section id="skills" className="scroll-mt-32 relative space-y-8">
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-amber-500/60 font-semibold">[SECT.03]</span>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight uppercase font-mono">Skills &amp; Tech Stack</h2>
-            <div className="flex-grow h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
+            <span className="font-mono text-xs text-primary/60 font-semibold">[SECT.03]</span>
+            <h2 className="text-3xl font-semibold text-foreground tracking-tight font-serif">Skills &amp; Tech Stack</h2>
+            <div className="flex-grow h-px bg-gradient-to-r from-primary/20 to-transparent" />
           </div>
 
-          <p className="text-gray-400 font-sans">
+          <p className="text-muted-foreground font-sans">
             A modular map of tools, platforms, and environments I use to build scalable web applications:
           </p>
 
@@ -297,8 +297,8 @@ export default async function Home() {
           <div className="flex flex-wrap gap-4">
             {profile.skills.map((skill, idx) => (
               <TiltCard key={idx} className="rounded-2xl">
-                <div className="glass-panel border border-amber-500/10 hover:border-amber-500/30 px-6 py-4 rounded-2xl font-mono text-sm font-semibold text-gray-300 hover:text-amber-400 transition-all duration-300 flex items-center gap-2">
-                  <span className="text-amber-500/40 font-normal">#</span>
+                <div className="glass-panel border border-border hover:border-primary/30 px-6 py-4 rounded-2xl font-mono text-sm font-semibold text-foreground hover:text-primary transition-all duration-300 flex items-center gap-2">
+                  <span className="text-primary/40 font-normal">#</span>
                   {skill}
                 </div>
               </TiltCard>
@@ -309,61 +309,61 @@ export default async function Home() {
         {/* Contact Section */}
         <section id="contact" className="scroll-mt-32 relative space-y-8">
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-amber-500/60 font-semibold">[SECT.04]</span>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight uppercase font-mono">Contact Me</h2>
-            <div className="flex-grow h-px bg-gradient-to-r from-amber-500/20 to-transparent" />
+            <span className="font-mono text-xs text-primary/60 font-semibold">[SECT.04]</span>
+            <h2 className="text-3xl font-semibold text-foreground tracking-tight font-serif">Contact Me</h2>
+            <div className="flex-grow h-px bg-gradient-to-r from-primary/20 to-transparent" />
           </div>
 
-          <div className="glass-panel border border-amber-500/10 p-6 md:p-10 rounded-3xl grid md:grid-cols-2 gap-8 md:gap-12 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-amber-500/5 to-transparent pointer-events-none" />
+          <div className="glass-panel border border-border p-6 md:p-10 rounded-3xl grid md:grid-cols-2 gap-8 md:gap-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
 
             <div className="space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
-                <h3 className="text-2xl font-extrabold text-white tracking-tight uppercase font-mono">Let&apos;s Build Something Together</h3>
-                <p className="text-gray-400 leading-relaxed font-sans">
+                <h3 className="text-2xl font-semibold text-foreground tracking-tight font-serif">Let&apos;s Build Something Together</h3>
+                <p className="text-muted-foreground leading-relaxed font-sans">
                   Have an interesting project, a job opportunity, or just want to chat about web engineering? Reach out using the form, or ping me directly on my social lines.
                 </p>
               </div>
 
               <div className="space-y-4 text-sm font-mono pt-6 md:pt-0">
-                <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                  <span className="text-amber-400 font-semibold">{"// EMAIL:"}</span>
-                  <a href={`mailto:${profile.email}`} className="hover:text-amber-300 text-gray-300 transition-colors">
+                <div className="flex items-center gap-3 border-b border-border pb-3">
+                  <span className="text-primary font-semibold">EMAIL:</span>
+                  <a href={`mailto:${profile.email}`} className="hover:text-primary text-foreground transition-colors">
                     {profile.email}
                   </a>
                 </div>
                 {profile.phone && (
-                  <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                    <span className="text-amber-400 font-semibold">{"// WHATSAPP:"}</span>
+                  <div className="flex items-center gap-3 border-b border-border pb-3">
+                    <span className="text-primary font-semibold">WHATSAPP:</span>
                     <a
                       href={profile.phone}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-amber-300 text-gray-300 transition-colors"
+                      className="hover:text-primary text-foreground transition-colors"
                     >
                       {profile.phone.replace("https://wa.me/", "+").replace("628", "08")}
                     </a>
                   </div>
                 )}
-                <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                  <span className="text-amber-400 font-semibold">{"// GITHUB:"}</span>
+                <div className="flex items-center gap-3 border-b border-border pb-3">
+                  <span className="text-primary font-semibold">GITHUB:</span>
                   <a
                     href={profile.github_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-amber-300 text-gray-300 transition-colors"
+                    className="hover:text-primary text-foreground transition-colors"
                   >
                     {profile.github_url.replace("https://", "")}
                   </a>
                 </div>
                 {profile.linkedin_url && (
                   <div className="flex items-center gap-3">
-                    <span className="text-amber-400 font-semibold">{"// LINKEDIN:"}</span>
+                    <span className="text-primary font-semibold">LINKEDIN:</span>
                     <a
                       href={profile.linkedin_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-amber-300 text-gray-300 transition-colors"
+                      className="hover:text-primary text-foreground transition-colors"
                     >
                       {profile.linkedin_url.replace("https://", "")}
                     </a>
@@ -381,10 +381,9 @@ export default async function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="relative border-t border-amber-500/10 py-10 text-center text-xs font-mono text-gray-500 z-10 bg-[#050200]/80 backdrop-blur-sm">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="relative border-t border-border py-10 text-center text-xs font-mono text-muted-foreground z-10 bg-background/80 backdrop-blur-sm">
+        <div className="max-w-5xl mx-auto px-6 flex items-center justify-center">
           <p>© 2026 {profile.name.toUpperCase()}. ALL RIGHTS RESERVED.</p>
-          <p className="text-amber-500/50">ENG: NEXT.JS_14 + TAILWIND_CSS + FRAMER_MOTION</p>
         </div>
       </footer>
     </div>

@@ -9,12 +9,12 @@ export function HeroScrollDemo() {
       <ContainerScroll
         titleComponent={
           <>
-            <h2 className="text-2xl font-mono text-amber-500/80 tracking-widest uppercase mb-4 text-center">
+            <h2 className="text-2xl font-mono text-primary/80 tracking-widest uppercase mb-4 text-center">
               Visual Presentation
             </h2>
-            <h1 className="text-4xl font-extrabold text-white sm:text-6xl tracking-tight leading-none uppercase font-mono text-center">
+            <h1 className="text-4xl font-semibold text-white sm:text-6xl tracking-tight leading-none font-serif text-center">
               Interactive <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 drop-shadow-[0_2px_10px_rgba(245,158,11,0.2)]">
+              <span className="text-primary font-serif italic">
                 Scroll Canvas
               </span>
             </h1>

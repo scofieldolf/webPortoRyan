@@ -1,30 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 interface NavbarProps {
   name: string;
+  cvUrl?: string;
 }
 
-export default function Navbar({ name }: NavbarProps) {
+export default function Navbar({ name, cvUrl }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const sections = ["about", "projects", "skills", "contact"];
+    const handleScroll = () => {
+      // 1. Header scroll detection
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // 2. Active section detection
+      const scrollPosition = window.scrollY + 160; // offset for navbar height + buffer
+      let currentSection = "";
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentSection = section;
+            break;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run initially
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b border-indigo-500/10">
-      <nav className="mx-auto max-w-5xl px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? "glass-panel border-b border-primary/10 shadow-sm py-2"
+          : "bg-transparent border-b border-transparent py-4"
+      }`}
+    >
+      <nav className="mx-auto max-w-5xl px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-0">
         <div className="flex items-center justify-between w-full md:w-auto">
-          <a href="#" className="flex items-center gap-2 text-xl font-bold tracking-tight text-indigo-400 hover:text-indigo-300 transition-colors">
-            <span className="text-xs font-mono text-indigo-500">[SYS]</span>
-            <span>{name.toUpperCase()}</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <a
+            href="#"
+            className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-primary hover:opacity-80 transition-opacity group"
+          >
+            <span className="text-xs font-mono text-primary/70 mr-0.5">[SYS]</span>
+            <span className="flex items-center font-mono select-none">
+              <span className="text-xl font-black">r</span>
+              <span
+                className={`overflow-hidden transition-all duration-500 ease-in-out whitespace-nowrap inline-block ${
+                  isScrolled
+                    ? "max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 group-hover:ml-0.5"
+                    : "max-w-[120px] opacity-100 ml-0.5"
+                }`}
+              >
+                yanDevOps
+              </span>
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
           </a>
 
           <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-gray-400 hover:text-indigo-400 focus:outline-none transition-colors"
+              className="p-2 text-muted-foreground hover:text-primary focus:outline-none transition-colors"
               aria-label="Toggle Menu"
             >
               {isOpen ? (
@@ -40,47 +96,67 @@ export default function Navbar({ name }: NavbarProps) {
           </div>
         </div>
 
-        {/* Navigation Links */}
+        {/* Collapsible Navigation Menu */}
         <div
-          className={`${
-            isOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 w-full md:w-auto text-sm font-mono text-gray-400`}
+          className={`overflow-hidden transition-all duration-300 ease-in-out
+            md:flex md:flex-row md:items-center md:gap-8 md:w-auto md:h-auto md:opacity-100 md:translate-y-0
+            flex flex-col items-start w-full text-sm font-mono text-muted-foreground
+            ${
+              isOpen
+                ? "max-h-[350px] opacity-100 translate-y-0 mt-4 pb-4 border-t border-border/50 md:border-none pt-4 md:pt-0"
+                : "max-h-0 opacity-0 -translate-y-2 pointer-events-none md:pointer-events-auto md:mt-0 md:max-h-none"
+            }
+          `}
         >
           <a
             href="#about"
             onClick={() => setIsOpen(false)}
-            className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto border-b border-indigo-500/5 md:border-none group flex items-center gap-1"
+            className={`transition-colors py-2 md:py-0 w-full md:w-auto border-b border-border/50 md:border-none flex items-center ${
+              activeSection === "about" ? "text-primary font-bold" : "hover:text-primary"
+            }`}
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>About</span>
           </a>
           <a
             href="#projects"
             onClick={() => setIsOpen(false)}
-            className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto border-b border-indigo-500/5 md:border-none group flex items-center gap-1"
+            className={`transition-colors py-2 md:py-0 w-full md:w-auto border-b border-border/50 md:border-none flex items-center ${
+              activeSection === "projects" ? "text-primary font-bold" : "hover:text-primary"
+            }`}
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>Projects</span>
           </a>
           <a
             href="#skills"
             onClick={() => setIsOpen(false)}
-            className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto border-b border-indigo-500/5 md:border-none group flex items-center gap-1"
+            className={`transition-colors py-2 md:py-0 w-full md:w-auto border-b border-border/50 md:border-none flex items-center ${
+              activeSection === "skills" ? "text-primary font-bold" : "hover:text-primary"
+            }`}
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>Skills</span>
           </a>
           <a
             href="#contact"
             onClick={() => setIsOpen(false)}
-            className="hover:text-indigo-400 transition-colors py-2 md:py-0 w-full md:w-auto md:border-none group flex items-center gap-1"
+            className={`transition-colors py-2 md:py-0 w-full md:w-auto border-b border-border/50 md:border-none flex items-center ${
+              activeSection === "contact" ? "text-primary font-bold" : "hover:text-primary"
+            }`}
           >
-            <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">{"//"}</span>
             <span>Contact</span>
           </a>
 
-          <div className="hidden md:block border-l border-indigo-500/10 pl-4">
-            <ThemeToggle />
+          {/* Action Area (Desktop: Sidebar Divider + CV Button + ThemeToggle, Mobile: Column CV Button) */}
+          <div className="w-full md:w-auto md:flex items-center md:gap-4 md:border-l md:border-border md:pl-4 mt-4 md:mt-0">
+            <a
+              href={cvUrl || "/cv-ryan.pdf"}
+              download
+              className="w-full md:w-auto inline-flex items-center justify-center px-4 py-2 rounded-xl border border-primary/20 hover:border-primary/45 text-primary hover:bg-primary/5 transition-all text-xs font-semibold select-none shadow-sm shadow-primary/5 active:scale-95"
+            >
+              DOWNLOAD CV
+            </a>
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </nav>
