@@ -11,17 +11,21 @@ vi.mock("framer-motion", () => {
 
   return {
     motion: {
-      div: React.forwardRef(({ children, className, style, ...props }: any, ref: any) => {
-        const resolvedStyle = { ...style };
-        if (style && typeof style.transform === "object" && "get" in style.transform) {
-          resolvedStyle.transform = style.transform.get();
-        }
-        return (
-          <div ref={ref} className={className} style={resolvedStyle} {...props}>
-            {children}
-          </div>
-        );
-      }),
+      div: (() => {
+        const MockDiv = React.forwardRef(({ children, className, style, ...props }: any, ref: any) => {
+          const resolvedStyle = { ...style };
+          if (style && typeof style.transform === "object" && "get" in style.transform) {
+            resolvedStyle.transform = style.transform.get();
+          }
+          return (
+            <div ref={ref} className={className} style={resolvedStyle} {...props}>
+              {children}
+            </div>
+          );
+        });
+        MockDiv.displayName = "MockDiv";
+        return MockDiv;
+      })(),
     },
     useMotionValue: () => ({
       set: setMock,
