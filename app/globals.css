@@ -132,28 +132,6 @@
   background-size: 20px 20px;
 }
 
-/* Glowing Neon Elements */
-.neon-glow-amber {
-  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35), 0 0 15px -8px rgba(245, 158, 11, 0.2);
-}
-
-.neon-border {
-  position: relative;
-}
-
-.neon-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.5), rgba(217, 119, 6, 0.2), transparent);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
 /* Glassmorphism Panel */
 .glass-panel {
   background: rgba(255, 255, 255, 0.75);
@@ -166,23 +144,7 @@
   border: 1px solid rgba(245, 158, 11, 0.05);
 }
 
-.glass-panel-hover:hover {
-  background: rgba(245, 245, 245, 0.85);
-  border-color: rgba(161, 161, 161, 0.25);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-}
-
-.dark .glass-panel-hover:hover {
-  background: rgba(20, 14, 3, 0.85);
-  border-color: rgba(245, 158, 11, 0.25);
-  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.15);
-}
-
 /* Custom Clip Paths for Tech Edges */
-.clip-cyber-corner {
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-}
-
 .clip-triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
