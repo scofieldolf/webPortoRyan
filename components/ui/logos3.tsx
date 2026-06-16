@@ -5,6 +5,7 @@
 "use client";
 
 import AutoScroll from "embla-carousel-auto-scroll";
+import Image from "next/image";
 
 import {
   Carousel,
@@ -102,10 +103,13 @@ const Logos3 = ({
                   className="flex basis-1/2 justify-center pl-0 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                 >
                   <div className="mx-6 flex shrink-0 items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110">
-                    <img
+                    <Image
                       src={logo.image}
                       alt={logo.description}
                       className={logo.className}
+                      width={100}
+                      height={30}
+                      unoptimized
                     />
                   </div>
                 </CarouselItem>

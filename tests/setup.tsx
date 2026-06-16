@@ -39,3 +39,12 @@ Object.defineProperty(window, "IntersectionObserver", {
   writable: true,
   value: MockIntersectionObserver,
 });
+
+// Mock next/image
+vi.mock("next/image", () => ({
+  __esModule: true,
+  default: ({ src, alt, width, height, className, priority, ...props }: any) => {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={src} alt={alt} width={width} height={height} className={className} {...props} />;
+  },
+}));

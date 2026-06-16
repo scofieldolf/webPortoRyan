@@ -11,6 +11,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'deifkwefumgah.cloudfront.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.shadcnblocks.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+      },
     ],
   },
 };
