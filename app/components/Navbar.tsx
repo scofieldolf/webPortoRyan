@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { useTranslation } from "@/lib/i18n";
 
 interface NavbarProps {
   name: string;
@@ -9,6 +10,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ name, cvUrl }: NavbarProps) {
+  const { t, locale, setLocale } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -115,7 +117,7 @@ export default function Navbar({ name, cvUrl }: NavbarProps) {
               activeSection === "about" ? "text-primary font-bold" : "hover:text-primary"
             }`}
           >
-            <span>About</span>
+            <span>{t("nav_about")}</span>
           </a>
           <a
             href="#projects"
@@ -124,7 +126,7 @@ export default function Navbar({ name, cvUrl }: NavbarProps) {
               activeSection === "projects" ? "text-primary font-bold" : "hover:text-primary"
             }`}
           >
-            <span>Projects</span>
+            <span>{t("nav_projects")}</span>
           </a>
           <a
             href="#skills"
@@ -133,7 +135,7 @@ export default function Navbar({ name, cvUrl }: NavbarProps) {
               activeSection === "skills" ? "text-primary font-bold" : "hover:text-primary"
             }`}
           >
-            <span>Skills</span>
+            <span>{t("nav_skills")}</span>
           </a>
           <a
             href="#contact"
@@ -142,7 +144,7 @@ export default function Navbar({ name, cvUrl }: NavbarProps) {
               activeSection === "contact" ? "text-primary font-bold" : "hover:text-primary"
             }`}
           >
-            <span>Contact</span>
+            <span>{t("nav_contact")}</span>
           </a>
 
           {/* Action Area (Desktop: Sidebar Divider + CV Button + ThemeToggle, Mobile: Column CV Button) */}
@@ -152,10 +154,33 @@ export default function Navbar({ name, cvUrl }: NavbarProps) {
               download
               className="w-full md:w-auto inline-flex items-center justify-center px-4 py-2 rounded-xl border border-primary/20 hover:border-primary/45 text-primary hover:bg-primary/5 transition-all text-xs font-semibold select-none shadow-sm shadow-primary/5 active:scale-95"
             >
-              DOWNLOAD CV
+              {t("nav_cv")}
             </a>
             <div className="hidden md:block">
               <ThemeToggle />
+            </div>
+
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1.5 font-mono text-xs mt-2 md:mt-0">
+              <button
+                onClick={() => setLocale("en")}
+                className={`px-2 py-1 rounded transition-colors ${
+                  locale === "en" ? "bg-primary text-primary-foreground font-bold" : "hover:text-primary text-muted-foreground"
+                }`}
+                aria-label="Set language to English"
+              >
+                EN
+              </button>
+              <span className="text-border">/</span>
+              <button
+                onClick={() => setLocale("id")}
+                className={`px-2 py-1 rounded transition-colors ${
+                  locale === "id" ? "bg-primary text-primary-foreground font-bold" : "hover:text-primary text-muted-foreground"
+                }`}
+                aria-label="Set bahasa ke Indonesia"
+              >
+                ID
+              </button>
             </div>
           </div>
         </div>

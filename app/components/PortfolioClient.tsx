@@ -1,0 +1,370 @@
+"use client";
+
+import React from "react";
+import dynamic from "next/dynamic";
+import { useTranslation } from "@/lib/i18n";
+import ContactForm from "./ContactForm";
+import ProjectCard from "./ProjectCard";
+import Navbar from "./Navbar";
+import TiltCard from "./TiltCard";
+
+// Dynamically import heavy client components to optimize bundle size and prevent hydration issues
+const FloatingParticles = dynamic(() => import("./FloatingParticles"), { ssr: false });
+const Logos3 = dynamic(() => import("@/components/ui/logos3").then((mod) => mod.Logos3), { ssr: false });
+const ContainerScroll = dynamic(
+  () => import("@/components/ui/container-scroll-animation").then((mod) => mod.ContainerScroll),
+  { ssr: false }
+);
+
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  github_url: string;
+  demo_url: string;
+}
+
+interface Profile {
+  name: string;
+  role: string;
+  location: string;
+  email: string;
+  phone?: string;
+  github_url: string;
+  linkedin_url: string;
+  cv_url: string;
+  about_summary: string;
+  about_details: string;
+  skills: string[];
+}
+
+interface PortfolioClientProps {
+  profile: Profile;
+  projects: Project[];
+}
+
+export default function PortfolioClient({ profile, projects }: PortfolioClientProps) {
+  const { t } = useTranslation();
+
+  const techLogos = [
+    {
+      id: "react",
+      description: "React.js",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "nextjs",
+      description: "Next.js",
+      image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/nextjs-wordmark.svg",
+      className: "h-8 w-auto filter invert brightness-100 hover:scale-110 transition-transform",
+    },
+    {
+      id: "tailwind",
+      description: "Tailwind CSS",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      className: "h-6 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "typescript",
+      description: "TypeScript",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "javascript",
+      description: "JavaScript",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "nodejs",
+      description: "Node.js",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "html5",
+      description: "HTML5",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "css3",
+      description: "CSS3",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+    {
+      id: "git",
+      description: "Git",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      className: "h-8 w-auto hover:scale-110 transition-transform",
+    },
+  ];
+
+  return (
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-primary overflow-x-hidden transition-colors duration-300">
+      {/* Background Cyber Grid */}
+      <div className="absolute inset-0 cyber-grid pointer-events-none opacity-60 z-0" />
+      <div className="absolute inset-0 cyber-grid-dots pointer-events-none opacity-45 z-0" />
+
+      {/* Ambient Radial Glows */}
+      <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-[40%] right-[5%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none z-0" />
+      <div className="absolute bottom-[10%] left-[15%] w-[450px] h-[450px] rounded-full bg-primary/5 blur-[130px] pointer-events-none z-0" />
+
+      {/* Background Floating Particles */}
+      <FloatingParticles />
+
+      {/* Navbar */}
+      <Navbar name={profile.name} cvUrl={profile.cv_url} />
+
+      <main className="relative mx-auto max-w-5xl px-6 py-16 md:py-24 space-y-24 md:space-y-36 z-10">
+        {/* Hero Section */}
+        <section id="hero" className="relative flex flex-col items-center text-center md:items-start md:text-left justify-between md:flex-row gap-12 py-12">
+          {/* Tech Grid Accents */}
+          <div className="absolute -left-4 top-0 w-8 h-8 border-t-2 border-l-2 border-primary/20 pointer-events-none" />
+
+          <div className="space-y-6 max-w-2xl">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/20">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              {t("status_available")}
+            </div>
+
+            <h1 className="text-4xl font-semibold sm:text-7xl tracking-tight leading-none text-foreground font-serif">
+              {t("hero_hello")} <span className="text-primary font-serif italic">{profile.name}</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl font-sans">
+              A <span className="font-semibold text-foreground">{profile.role}</span> {t("hero_desc")}
+            </p>
+
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
+              <a
+                href="#contact"
+                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground border border-primary/20 transition-all active:scale-95"
+              >
+                {t("hero_cta_contact")}
+              </a>
+              <a
+                href="#projects"
+                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-muted/50 hover:bg-muted text-foreground border border-border hover:border-primary/30 transition-all active:scale-95"
+              >
+                {t("hero_cta_projects")}
+              </a>
+              <a
+                href={profile.cv_url}
+                download
+                className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold bg-transparent border border-primary/20 text-primary hover:bg-primary/10 hover:border-primary/40 transition-all"
+              >
+                {t("hero_cta_cv")}
+              </a>
+            </div>
+          </div>
+
+          <div className="flex-shrink-0 relative">
+            <div className="absolute -inset-2 rounded-full bg-primary opacity-15 blur-xl animate-pulse" />
+            <TiltCard className="rounded-full">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full glass-panel border border-primary/20 flex items-center justify-center text-foreground text-6xl md:text-8xl font-black tracking-tighter shadow-2xl">
+                {/* Tech ticks circle background */}
+                <div className="absolute inset-2 border border-dashed border-primary/15 rounded-full animate-[spin_60s_linear_infinite]" />
+                <div className="absolute inset-4 border border-primary/5 rounded-full" />
+                <span className="relative z-10 text-primary">
+                  {profile.name.charAt(0)}
+                </span>
+              </div>
+            </TiltCard>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="scroll-mt-32 relative">
+          <ContainerScroll
+            titleComponent={
+              <div className="flex flex-col items-center justify-center text-center space-y-4 max-w-3xl mx-auto">
+                <span className="font-mono text-xs text-primary/80 tracking-widest uppercase">{t("about_title_sect")}</span>
+                <h2 className="text-4xl font-semibold text-foreground sm:text-6xl tracking-tight leading-none font-serif">
+                  {t("about_heading_1")} <br />
+                  <span className="text-primary font-serif italic">
+                    {t("about_heading_2")}
+                  </span>
+                </h2>
+                <div className="w-12 h-0.5 bg-primary/30 mt-4" />
+              </div>
+            }
+          >
+            <div className="h-full w-full overflow-y-auto p-6 md:p-10 bg-card text-card-foreground rounded-xl">
+              <div className="grid md:grid-cols-3 gap-8 text-base leading-relaxed">
+                <div className="md:col-span-2 space-y-6 text-justify md:text-left font-sans">
+                  <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-primary first-letter:mr-2 leading-relaxed">
+                    {profile.about_summary}
+                  </p>
+                  <p className="leading-relaxed text-muted-foreground">
+                    {profile.about_details}
+                  </p>
+                </div>
+
+                <div className="bg-muted/50 border border-border p-6 rounded-2xl space-y-6 text-sm relative overflow-hidden h-fit">
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full pointer-events-none" />
+                  <h3 className="font-mono font-bold text-foreground text-base flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    {t("about_quick_info")}
+                  </h3>
+                  <div className="space-y-4 font-mono text-left">
+                    <div className="border-b border-border pb-2">
+                      <span className="text-primary/80 block text-xs">{t("info_location")}</span>
+                      <p className="font-semibold text-foreground">{profile.location}</p>
+                    </div>
+                    <div className="border-b border-border pb-2">
+                      <span className="text-primary/80 block text-xs">{t("info_role")}</span>
+                      <p className="font-semibold text-foreground">{profile.role} / Student</p>
+                    </div>
+                    <div>
+                      <span className="text-primary/80 block text-xs">{t("info_specialization")}</span>
+                      <p className="font-semibold text-foreground">{t("info_spec_val")}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ContainerScroll>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="scroll-mt-32 relative space-y-8">
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs text-primary/60 font-semibold">{t("projects_title_sect")}</span>
+            <h2 className="text-3xl font-semibold text-foreground tracking-tight font-serif">{t("projects_heading")}</h2>
+            <div className="flex-grow h-px bg-gradient-to-r from-primary/20 to-transparent" />
+          </div>
+
+          {projects.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, idx) => (
+                <ProjectCard
+                  key={idx}
+                  title={project.title}
+                  description={project.description}
+                  tech={project.tech}
+                  github_url={project.github_url}
+                  demo_url={project.demo_url}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 glass-panel border border-border rounded-2xl text-muted-foreground font-mono">
+              {t("projects_empty")}
+            </div>
+          )}
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="scroll-mt-32 relative space-y-8">
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs text-primary/60 font-semibold">{t("skills_title_sect")}</span>
+            <h2 className="text-3xl font-semibold text-foreground tracking-tight font-serif">{t("skills_heading")}</h2>
+            <div className="flex-grow h-px bg-gradient-to-r from-primary/20 to-transparent" />
+          </div>
+
+          <p className="text-muted-foreground font-sans">
+            {t("skills_summary")}
+          </p>
+
+          <Logos3 logos={techLogos} />
+
+          <div className="flex flex-wrap gap-4">
+            {profile.skills.map((skill, idx) => (
+              <TiltCard key={idx} className="rounded-2xl">
+                <div className="glass-panel border border-border hover:border-primary/30 px-6 py-4 rounded-2xl font-mono text-sm font-semibold text-foreground hover:text-primary transition-all duration-300 flex items-center gap-2">
+                  <span className="text-primary/40 font-normal">#</span>
+                  {skill}
+                </div>
+              </TiltCard>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="scroll-mt-32 relative space-y-8">
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs text-primary/60 font-semibold">{t("contact_title_sect")}</span>
+            <h2 className="text-3xl font-semibold text-foreground tracking-tight font-serif">{t("contact_heading")}</h2>
+            <div className="flex-grow h-px bg-gradient-to-r from-primary/20 to-transparent" />
+          </div>
+
+          <div className="glass-panel border border-border p-6 md:p-10 rounded-3xl grid md:grid-cols-2 gap-8 md:gap-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+
+            <div className="space-y-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold text-foreground tracking-tight font-serif">{t("contact_box_title")}</h3>
+                <p className="text-muted-foreground leading-relaxed font-sans">
+                  {t("contact_box_desc")}
+                </p>
+              </div>
+
+              <div className="space-y-4 text-sm font-mono pt-6 md:pt-0">
+                <div className="flex items-center gap-3 border-b border-border pb-3">
+                  <span className="text-primary font-semibold">EMAIL:</span>
+                  <a href={`mailto:${profile.email}`} className="hover:text-primary text-foreground transition-colors">
+                    {profile.email}
+                  </a>
+                </div>
+                {profile.phone && (
+                  <div className="flex items-center gap-3 border-b border-border pb-3">
+                    <span className="text-primary font-semibold">WHATSAPP:</span>
+                    <a
+                      href={profile.phone}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary text-foreground transition-colors"
+                    >
+                      {profile.phone.replace("https://wa.me/", "+").replace("628", "08")}
+                    </a>
+                  </div>
+                )}
+                <div className="flex items-center gap-3 border-b border-border pb-3">
+                  <span className="text-primary font-semibold">GITHUB:</span>
+                  <a
+                    href={profile.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary text-foreground transition-colors"
+                  >
+                    {profile.github_url.replace("https://", "")}
+                  </a>
+                </div>
+                {profile.linkedin_url && (
+                  <div className="flex items-center gap-3">
+                    <span className="text-primary font-semibold">LINKEDIN:</span>
+                    <a
+                      href={profile.linkedin_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary text-foreground transition-colors"
+                    >
+                      {profile.linkedin_url.replace("https://", "")}
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Contact Form - Client Component */}
+            <div className="relative z-10">
+              <ContactForm />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="relative border-t border-border py-10 text-center text-xs font-mono text-muted-foreground z-10 bg-background/80 backdrop-blur-sm">
+        <div className="max-w-5xl mx-auto px-6 flex items-center justify-center">
+          <p>© 2026 {profile.name.toUpperCase()}. {t("footer_rights")}</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
