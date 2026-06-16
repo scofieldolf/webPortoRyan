@@ -3,6 +3,23 @@ import Navbar from "@/app/components/Navbar";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import React from "react";
 
+vi.mock("@/lib/i18n", () => ({
+  useTranslation: () => ({
+    locale: "en",
+    setLocale: vi.fn(),
+    t: (key: string) => {
+      const dictionary: Record<string, string> = {
+        nav_about: "About",
+        nav_projects: "Projects",
+        nav_skills: "Skills",
+        nav_contact: "Contact",
+        nav_cv: "DOWNLOAD CV",
+      };
+      return dictionary[key] || key;
+    },
+  }),
+}));
+
 describe("Navbar Component", () => {
   beforeEach(() => {
     vi.clearAllMocks();

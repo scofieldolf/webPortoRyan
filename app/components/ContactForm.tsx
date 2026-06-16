@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "@/lib/i18n";
 
 export default function ContactForm() {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -26,10 +28,10 @@ export default function ContactForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to send message.");
+        throw new Error(data.error || t("contact_err_default"));
       }
 
-      setStatusMsg({ type: "success", text: "Your message has been sent successfully! Thank you 🙏" });
+      setStatusMsg({ type: "success", text: t("contact_success") });
       // Reset form
       setName("");
       setEmail("");
@@ -38,7 +40,7 @@ export default function ContactForm() {
       const errorMsg =
         error instanceof Error
           ? error.message
-          : "A connection error occurred. Please try again.";
+          : t("contact_err_conn");
       setStatusMsg({
         type: "error",
         text: errorMsg,
@@ -67,14 +69,14 @@ export default function ContactForm() {
           htmlFor="contact-name"
           className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono"
         >
-          Name
+          {t("contact_label_name")}
         </label>
         <input
           id="contact-name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Your Name"
+          placeholder={t("contact_placeholder_name")}
           required
           disabled={isLoading}
           className="w-full bg-input border border-border text-foreground rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 disabled:opacity-50"
@@ -85,14 +87,14 @@ export default function ContactForm() {
           htmlFor="contact-email"
           className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono"
         >
-          Email
+          {t("contact_label_email")}
         </label>
         <input
           id="contact-email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="your.email@example.com"
+          placeholder={t("contact_placeholder_email")}
           required
           disabled={isLoading}
           className="w-full bg-input border border-border text-foreground rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 disabled:opacity-50"
@@ -103,14 +105,14 @@ export default function ContactForm() {
           htmlFor="contact-message"
           className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono"
         >
-          Message
+          {t("contact_label_message")}
         </label>
         <textarea
           id="contact-message"
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Write your message..."
+          placeholder={t("contact_placeholder_message")}
           required
           disabled={isLoading}
           className="w-full bg-input border border-border text-foreground rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 resize-none disabled:opacity-50"
@@ -127,10 +129,10 @@ export default function ContactForm() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            Sending...
+            {t("contact_btn_sending")}
           </>
         ) : (
-          "Send Message"
+          t("contact_btn_send")
         )}
       </button>
     </form>

@@ -2,6 +2,27 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import ContactForm from "@/app/components/ContactForm";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
+vi.mock("@/lib/i18n", () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const dictionary: Record<string, string> = {
+        contact_label_name: "Name",
+        contact_placeholder_name: "Your Name",
+        contact_label_email: "Email",
+        contact_placeholder_email: "your.email@example.com",
+        contact_label_message: "Message",
+        contact_placeholder_message: "Write your message...",
+        contact_btn_send: "Send Message",
+        contact_btn_sending: "Sending...",
+        contact_success: "Your message has been sent successfully! Thank you 🙏",
+        contact_err_conn: "A connection error occurred. Please try again.",
+        contact_err_default: "Failed to send message.",
+      };
+      return dictionary[key] || key;
+    },
+  }),
+}));
+
 describe("ContactForm Component", () => {
   beforeEach(() => {
     vi.stubGlobal("fetch", vi.fn());

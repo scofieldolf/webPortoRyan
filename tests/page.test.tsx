@@ -4,6 +4,43 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import fs from "fs";
 import React from "react";
 
+vi.mock("@/lib/i18n", () => ({
+  useTranslation: () => ({
+    locale: "en",
+    setLocale: vi.fn(),
+    t: (key: string) => {
+      const dictionary: Record<string, string> = {
+        status_available: "STATUS: AVAILABLE_FOR_PROJECTS",
+        hero_hello: "Hello, I'm",
+        hero_desc: "focused on engineering immersive, hyper-responsive, and user-centric digital environments.",
+        hero_cta_contact: "CONTACT ME",
+        hero_cta_projects: "VIEW PROJECTS",
+        hero_cta_cv: "DOWNLOAD CV",
+        about_title_sect: "[SECT.01] ABOUT_ME",
+        about_heading_1: "Get to know",
+        about_heading_2: "My Journey",
+        about_quick_info: "Quick Info",
+        info_location: "LOCATION",
+        info_role: "PRIMARY ROLE",
+        info_specialization: "SPECIALIZATION",
+        info_spec_val: "Interactive Web Interfaces",
+        projects_title_sect: "[SECT.02]",
+        projects_heading: "Featured Projects",
+        projects_empty: "NO PROJECTS REGISTERED",
+        skills_title_sect: "[SECT.03]",
+        skills_heading: "Skills & Tech Stack",
+        skills_summary: "A modular map of tools, platforms, and environments I use to build scalable web applications:",
+        contact_title_sect: "[SECT.04]",
+        contact_heading: "Contact Me",
+        contact_box_title: "Let's Build Something Together",
+        contact_box_desc: "Have an interesting project, a job opportunity, or just want to chat about web engineering? Reach out using the form, or ping me directly on my social lines.",
+        footer_rights: "ALL RIGHTS RESERVED.",
+      };
+      return dictionary[key] || key;
+    },
+  }),
+}));
+
 // Mock nested components to simplify page testing
 vi.mock("@/app/components/ContactForm", () => ({
   default: () => <div data-testid="contact-form">Contact Form</div>,
