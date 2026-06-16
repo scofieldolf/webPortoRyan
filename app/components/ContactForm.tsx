@@ -63,10 +63,14 @@ export default function ContactForm() {
       )}
 
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono">
+        <label
+          htmlFor="contact-name"
+          className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono"
+        >
           Name
         </label>
         <input
+          id="contact-name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -77,10 +81,14 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono">
+        <label
+          htmlFor="contact-email"
+          className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono"
+        >
           Email
         </label>
         <input
+          id="contact-email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -91,10 +99,14 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono">
+        <label
+          htmlFor="contact-message"
+          className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-mono"
+        >
           Message
         </label>
         <textarea
+          id="contact-message"
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
