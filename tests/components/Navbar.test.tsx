@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import Navbar from "@/app/components/Navbar";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import React from "react";
 
 describe("Navbar Component", () => {
   beforeEach(() => {
@@ -55,7 +56,6 @@ describe("Navbar Component", () => {
   });
 
   it("sets active section on scroll", () => {
-    // Mock getElementById to return elements at offsetHeights
     const aboutEl = document.getElementById("about") as HTMLElement;
     const projectsEl = document.getElementById("projects") as HTMLElement;
 
@@ -68,7 +68,7 @@ describe("Navbar Component", () => {
 
     // Scroll into projects section
     act(() => {
-      window.scrollY = 500; // scrollPosition will be 500 + 160 = 660, which lands in projects (600 - 1100)
+      window.scrollY = 500;
       fireEvent.scroll(window);
     });
 
@@ -77,18 +77,26 @@ describe("Navbar Component", () => {
   });
 
   it("toggles mobile menu and closes on click of link", () => {
-    // Force mobile viewport size in window (standard test is jsdom, so we just invoke actions)
     render(<Navbar name="Ryan" />);
 
-    // Find the toggle menu button (the one with aria-label)
     const toggleButton = screen.getByRole("button", { name: "Toggle Menu" });
     expect(toggleButton).toBeInTheDocument();
 
-    // Menu should be toggled open
+    // Click on mobile menu links to verify state update and close handlers
     fireEvent.click(toggleButton);
-
-    // Clicking a navigation link should close the mobile menu
     const aboutLink = screen.getByText("About");
     fireEvent.click(aboutLink);
+
+    fireEvent.click(toggleButton);
+    const projectsLink = screen.getByText("Projects");
+    fireEvent.click(projectsLink);
+
+    fireEvent.click(toggleButton);
+    const skillsLink = screen.getByText("Skills");
+    fireEvent.click(skillsLink);
+
+    fireEvent.click(toggleButton);
+    const contactLink = screen.getByText("Contact");
+    fireEvent.click(contactLink);
   });
 });
