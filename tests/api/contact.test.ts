@@ -27,6 +27,7 @@ describe("POST /api/contact", () => {
   it("should return 400 if fields are missing", async () => {
     const request = new NextRequest("http://localhost/api/contact", {
       method: "POST",
+      headers: { "x-real-ip": "1.0.0.1" },
       body: JSON.stringify({ name: "", email: "", message: "" }),
     });
 
@@ -44,6 +45,7 @@ describe("POST /api/contact", () => {
 
     const request = new NextRequest("http://localhost/api/contact", {
       method: "POST",
+      headers: { "x-real-ip": "1.0.0.2" },
       body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: "Hi" }),
     });
 
@@ -69,6 +71,7 @@ describe("POST /api/contact", () => {
 
     const request = new NextRequest("http://localhost/api/contact", {
       method: "POST",
+      headers: { "x-real-ip": "1.0.0.3" },
       body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: "Hi" }),
     });
 
@@ -89,6 +92,7 @@ describe("POST /api/contact", () => {
 
     const request = new NextRequest("http://localhost/api/contact", {
       method: "POST",
+      headers: { "x-real-ip": "1.0.0.4" },
       body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: "Hi" }),
     });
 
@@ -110,6 +114,7 @@ describe("POST /api/contact", () => {
 
     const request = new NextRequest("http://localhost/api/contact", {
       method: "POST",
+      headers: { "x-real-ip": "1.0.0.5" },
       body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: "Hi" }),
     });
 
@@ -123,6 +128,7 @@ describe("POST /api/contact", () => {
   it("should return 500 status when request json parsing completely throws error", async () => {
     const request = new NextRequest("http://localhost/api/contact", {
       method: "POST",
+      headers: { "x-real-ip": "1.0.0.6" },
       body: "invalid-json",
     });
 
@@ -134,5 +140,43 @@ describe("POST /api/contact", () => {
 
     expect(response.status).toBe(500);
     expect(data.error).toBe("An internal server error occurred.");
+  });
+
+  it("should trigger rate limiting after 5 consecutive submissions from same IP", async () => {
+    vi.mocked(fs.existsSync).mockReturnValue(true);
+    vi.mocked(fs.readFileSync).mockReturnValue("[]");
+    vi.mocked(fs.writeFileSync).mockImplementation(() => {});
+
+    // First 5 requests succeed
+    for (let i = 0; i < 5; i++) {
+      const request = new NextRequest("http://localhost/api/contact", {
+        method: "POST",
+        headers: { "x-real-ip": "1.2.3.4" },
+        body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: `Hi ${i}` }),
+      });
+      const response = await POST(request);
+      expect(response.status).toBe(201);
+    }
+
+    // 6th request from same IP is rate limited
+    const limitRequest = new NextRequest("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "x-real-ip": "1.2.3.4" },
+      body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: "Hi spam" }),
+    });
+    const limitResponse = await POST(limitRequest);
+    const limitData = await limitResponse.json();
+
+    expect(limitResponse.status).toBe(429);
+    expect(limitData.error).toBe("Too many contact submissions. Please try again later.");
+
+    // Request from different IP still succeeds
+    const otherRequest = new NextRequest("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "x-real-ip": "5.6.7.8" },
+      body: JSON.stringify({ name: "Ryan", email: "ryan@test.com", message: "Hi from friend" }),
+    });
+    const otherResponse = await POST(otherRequest);
+    expect(otherResponse.status).toBe(201);
   });
 });

@@ -9,8 +9,38 @@ interface ContactMessage {
   created_at: string;
 }
 
+// In-memory rate limiter cache
+const ipCache = new Map<string, number[]>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5; // max 5 submissions per minute per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = ipCache.get(ip) || [];
+
+  // Filter out timestamps older than the rate limit window
+  const activeTimestamps = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (activeTimestamps.length >= MAX_REQUESTS_PER_WINDOW) {
+    return true;
+  }
+
+  activeTimestamps.push(now);
+  ipCache.set(ip, activeTimestamps);
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "127.0.0.1";
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many contact submissions. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const { name, email, message } = await req.json();
 
     if (!name || !email || !message) {
