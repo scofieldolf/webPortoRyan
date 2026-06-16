@@ -2,6 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
 
+interface ContactMessage {
+  name: string;
+  email: string;
+  message: string;
+  created_at: string;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { name, email, message } = await req.json();
@@ -26,7 +33,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const contacts: any[] = JSON.parse(raw || "[]");
+    const contacts: ContactMessage[] = JSON.parse(raw || "[]");
 
     contacts.push({
       name,
@@ -45,7 +52,7 @@ export async function POST(req: NextRequest) {
         if (fs.existsSync(tmpPath)) {
           tmpRaw = fs.readFileSync(tmpPath, "utf-8");
         }
-        const tmpContacts: any[] = JSON.parse(tmpRaw || "[]");
+        const tmpContacts: ContactMessage[] = JSON.parse(tmpRaw || "[]");
         tmpContacts.push({
           name,
           email,

@@ -34,10 +34,14 @@ export default function ContactForm() {
       setName("");
       setEmail("");
       setMessage("");
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMsg =
+        error instanceof Error
+          ? error.message
+          : "A connection error occurred. Please try again.";
       setStatusMsg({
         type: "error",
-        text: error.message || "A connection error occurred. Please try again.",
+        text: errorMsg,
       });
     } finally {
       setIsLoading(false);

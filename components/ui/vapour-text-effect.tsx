@@ -559,12 +559,13 @@ const createParticles = (
   ctx.imageSmoothingQuality = "high";
   ctx.imageSmoothingEnabled = true;
 
-  if ('fontKerning' in ctx) {
-    (ctx as any).fontKerning = "normal";
+  const extCtx = ctx as unknown as { fontKerning?: string; textRendering?: string };
+  if ('fontKerning' in extCtx) {
+    extCtx.fontKerning = "normal";
   }
 
-  if ('textRendering' in ctx) {
-    (ctx as any).textRendering = "geometricPrecision";
+  if ('textRendering' in extCtx) {
+    extCtx.textRendering = "geometricPrecision";
   }
 
   // Calculate text boundaries
