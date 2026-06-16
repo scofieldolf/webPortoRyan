@@ -1,26 +1,27 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import TiltCard from "@/app/components/TiltCard";
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import React from "react";
 
 // Mock framer-motion hooks and components
 vi.mock("framer-motion", () => {
+  const React = require("react");
   const setMock = vi.fn();
   const getMock = vi.fn().mockReturnValue(0);
 
   return {
     motion: {
-      div: ({ children, className, style, ...props }: any) => {
-        // Resolve transform if it is a motion value or a function
+      div: React.forwardRef(({ children, className, style, ...props }: any, ref: any) => {
         const resolvedStyle = { ...style };
         if (style && typeof style.transform === "object" && "get" in style.transform) {
           resolvedStyle.transform = style.transform.get();
         }
         return (
-          <div className={className} style={resolvedStyle} {...props}>
+          <div ref={ref} className={className} style={resolvedStyle} {...props}>
             {children}
           </div>
         );
-      },
+      }),
     },
     useMotionValue: () => ({
       set: setMock,
@@ -82,9 +83,6 @@ describe("TiltCard Component", () => {
     const cardElement = container.firstChild as HTMLElement;
     expect(cardElement).toBeInTheDocument();
 
-    // Trigger mouse enter
-    fireEvent.mouseEnter(cardElement);
-
     // Mock getBoundingClientRect
     cardElement.getBoundingClientRect = () => ({
       width: 200,
@@ -97,6 +95,9 @@ describe("TiltCard Component", () => {
       y: 0,
       toJSON: () => {},
     });
+
+    // Trigger mouse enter
+    fireEvent.mouseEnter(cardElement);
 
     // Mouse move
     fireEvent.mouseMove(cardElement, { clientX: 50, clientY: 50 });
