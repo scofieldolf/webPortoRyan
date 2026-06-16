@@ -1,12 +1,18 @@
 import fs from "fs";
 import path from "path";
+import dynamic from "next/dynamic";
 import ContactForm from "./components/ContactForm";
 import ProjectCard from "./components/ProjectCard";
 import Navbar from "./components/Navbar";
-import FloatingParticles from "./components/FloatingParticles";
 import TiltCard from "./components/TiltCard";
-import { Logos3 } from "@/components/ui/logos3";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+
+// Dynamically import heavy client components to optimize bundle size and prevent hydration issues
+const FloatingParticles = dynamic(() => import("./components/FloatingParticles"), { ssr: false });
+const Logos3 = dynamic(() => import("@/components/ui/logos3").then((mod) => mod.Logos3), { ssr: false });
+const ContainerScroll = dynamic(
+  () => import("@/components/ui/container-scroll-animation").then((mod) => mod.ContainerScroll),
+  { ssr: false }
+);
 
 // Project data type
 interface Project {

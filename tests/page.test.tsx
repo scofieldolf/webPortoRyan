@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Home from "@/app/page";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import fs from "fs";
@@ -94,11 +94,13 @@ describe("Home Page (Server Component)", () => {
     // Verify profile rendered using precise query
     expect(screen.getByRole("heading", { name: /Hello, I'm/i })).toHaveTextContent("Ryan Viryavan");
     expect(screen.getAllByText(/DevOps Engineer/i).length).toBeGreaterThan(0);
-    expect(screen.getByText("Summary info.")).toBeInTheDocument();
-    expect(screen.getByText("Detail info.")).toBeInTheDocument();
 
-    // Verify custom skills rendered
-    expect(screen.getByText("Docker")).toBeInTheDocument();
+    // Verify dynamic about components content
+    await waitFor(() => {
+      expect(screen.getByText("Summary info.")).toBeInTheDocument();
+      expect(screen.getByText("Detail info.")).toBeInTheDocument();
+      expect(screen.getByText("Docker")).toBeInTheDocument();
+    });
 
     // Verify projects rendered
     expect(screen.getByTestId("project-card")).toBeInTheDocument();
