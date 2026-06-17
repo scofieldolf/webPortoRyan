@@ -14,11 +14,11 @@
     "demo_url": "#"
   },
   {
-    "title": "E-Commerce Dashboard",
-    "description": "An admin dashboard for managing products, transactions, and sales statistics with interactive chart visualizations.",
-    "tech": ["React", "Chart.js", "Tailwind CSS"],
-    "github_url": "#",
-    "demo_url": "#"
+    "title": "GeoWatch Indonesia",
+    "description": "An interactive geospatial monitor for tracking active volcanoes and geothermal energy potential in Indonesia. Features real-time alert levels, seismic status, and interactive Leaflet map visualizations.",
+    "tech": ["Next.js", "TypeScript", "Leaflet", "Tailwind CSS", "Zustand", "SWR"],
+    "github_url": "https://github.com/scofieldolf/geowatch-indonesia",
+    "demo_url": "https://geowatch-indonesia.vercel.app"
   },
   {
     "title": "Task Management App",
