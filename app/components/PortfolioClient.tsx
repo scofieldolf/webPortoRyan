@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useTranslation } from "@/lib/i18n";
 import ContactForm from "./ContactForm";
@@ -33,6 +34,7 @@ interface Profile {
   github_url: string;
   linkedin_url: string;
   cv_url: string;
+  avatar_url?: string;
   about_summary: string;
   about_details: string;
   skills: string[];
@@ -166,13 +168,25 @@ export default function PortfolioClient({ profile, projects }: PortfolioClientPr
           <div className="flex-shrink-0 relative">
             <div className="absolute -inset-2 rounded-full bg-primary opacity-15 blur-xl animate-pulse" />
             <TiltCard className="rounded-full">
-              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full glass-panel border border-primary/20 flex items-center justify-center text-foreground text-6xl md:text-8xl font-black tracking-tighter shadow-2xl">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full glass-panel border border-primary/20 flex items-center justify-center overflow-hidden shadow-2xl">
                 {/* Tech ticks circle background */}
-                <div className="absolute inset-2 border border-dashed border-primary/15 rounded-full animate-[spin_60s_linear_infinite]" />
-                <div className="absolute inset-4 border border-primary/5 rounded-full" />
-                <span className="relative z-10 text-primary">
-                  {profile.name.charAt(0)}
-                </span>
+                <div className="absolute inset-2 border border-dashed border-primary/15 rounded-full animate-[spin_60s_linear_infinite] z-0" />
+                <div className="absolute inset-4 border border-primary/5 rounded-full z-0" />
+
+                {profile.avatar_url ? (
+                  <Image
+                    src={profile.avatar_url}
+                    alt={profile.name}
+                    fill
+                    sizes="(max-width: 768px) 192px, 256px"
+                    priority
+                    className="relative z-10 object-cover rounded-full"
+                  />
+                ) : (
+                  <span className="relative z-10 text-primary text-6xl md:text-8xl font-black tracking-tighter">
+                    {profile.name.charAt(0)}
+                  </span>
+                )}
               </div>
             </TiltCard>
           </div>

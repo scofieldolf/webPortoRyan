@@ -21,6 +21,7 @@ interface Profile {
   github_url: string;
   linkedin_url: string;
   cv_url: string;
+  avatar_url?: string;
   about_summary: string;
   about_details: string;
   skills: string[];
@@ -47,15 +48,16 @@ export default async function Home() {
     // Fallback data if file reading fails
     profile = {
       name: "Ryan",
-      role: "Frontend Developer",
+      role: "Fullstack Developer & AI Engineer",
       location: "Indonesia",
       email: "i.viryavan@binus.ac.id",
       phone: "https://wa.me/6287886790981",
       github_url: "https://github.com/scofieldolf",
       linkedin_url: "https://www.linkedin.com/in/i-made-viryavan-751766413/",
       cv_url: "/cv-ryan.pdf",
-      about_summary: "I am an IT student/professional passionate about developing modern websites.",
-      about_details: "My main focus is deepening my knowledge of the React and Next.js ecosystem.",
+      avatar_url: "/fotoryan.png",
+      about_summary: "6th-semester Computer Science student at Binus University, focused on fullstack development and AI engineering. I build things end-to-end — from interactive user interfaces to the systems and models running underneath.",
+      about_details: "Currently exploring the intersection of real-time data, mapping, and AI-powered applications. Open to internship, freelance, and full-time opportunities — remote or hybrid.",
       skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind CSS"],
     };
     projects = [];

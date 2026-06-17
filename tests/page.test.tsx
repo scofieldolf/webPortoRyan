@@ -154,7 +154,7 @@ describe("Home Page (Server Component)", () => {
 
     // Default fallback name
     expect(screen.getByRole("heading", { name: /Hello, I'm/i })).toHaveTextContent("Ryan");
-    expect(screen.getAllByText(/Frontend Developer/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Fullstack Developer/i).length).toBeGreaterThan(0);
     expect(screen.getByText("NO PROJECTS REGISTERED")).toBeInTheDocument();
   });
 });
