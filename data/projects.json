@@ -4,14 +4,14 @@
     "description": "An interactive, high-performance disaster monitor and climate hazard tracker for Indonesia. Features real-time seismic plotting on maps, pulsing magnitude metrics, and predictive climate timeline models (2026-2050).",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Leaflet"],
     "github_url": "https://github.com/scofieldolf/waspadagempa",
-    "demo_url": "#"
+    "demo_url": "https://waspadagempa.vercel.app"
   },
   {
     "title": "Personal Portfolio Website",
     "description": "A responsive portfolio website built with Next.js, Tailwind CSS, and TypeScript. Features a modern design with high performance.",
     "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
     "github_url": "https://github.com/scofieldolf/webPortoRyan",
-    "demo_url": "#"
+    "demo_url": "https://web-porto-ryan.vercel.app/"
   },
   {
     "title": "GeoWatch Indonesia",
@@ -24,21 +24,21 @@
     "title": "Task Management App",
     "description": "A daily task management application featuring drag-and-drop, task categories, and local storage (LocalStorage) persistence.",
     "tech": ["React", "CSS Modules", "Context API"],
-    "github_url": "#",
-    "demo_url": "#"
+    "github_url": "https://github.com/scofieldolf/waspadagempa",
+    "demo_url": "/demo/task-manager"
   },
   {
     "title": "Chat App Interface",
     "description": "A real-time chat application interface with a minimalist design, online status, and built-in dark mode.",
     "tech": ["React", "Tailwind CSS", "Socket.io"],
-    "github_url": "#",
-    "demo_url": "#"
+    "github_url": "https://github.com/scofieldolf/waspadagempa",
+    "demo_url": "/demo/chat-app"
   },
   {
     "title": "Coffee Shop UI Redesign",
     "description": "A local coffee shop website interface redesign focusing on an intuitive ordering flow and modern aesthetics.",
     "tech": ["Figma", "Tailwind CSS", "HTML"],
-    "github_url": "#",
-    "demo_url": "#"
+    "github_url": "https://github.com/scofieldolf/waspadagempa",
+    "demo_url": "/demo/coffee-shop"
   }
 ]
